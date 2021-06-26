@@ -1,0 +1,122 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint-css:
+    name: 'Lint: CSS'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Configure npm cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install Node dependencies
+        run: npm ci
+        env:
+          CI: true
+
+      - name: Detect coding standard violations (stylelint)
+        run: npm run lint:css
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+  lint-js:
+    name: 'Lint: JS'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get npm cache directory
+        id: npm-cache
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
+      - name: Configure npm cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install Node dependencies
+        run: npm ci
+        env:
+          CI: true
+
+      - name: Validate package.json
+        run: npm run lint:pkg-json
+
+      - name: Detect ESLint coding standard violations
+        if: >
+          github.event.pull_request.head.repo.fork == true ||
+          github.event.pull_request.user.login == 'dependabot[bot]'
+        run: npm run lint:js
+
+      - name: Generate ESLint coding standard violations report
+        # Prevent generating the ESLint report if PR is from a fork or authored by Dependabot.
+        if: >
+          ! ( github.event.pull_request.head.repo.fork == true ||
+          github.event.pull_request.user.login == 'dependabot[bot]' )
+        run: npm run lint:js:report
+        continue-on-error: true
+
+      - name: Annotate code linting results
+        # The action cannot annotate the PR when run from a PR fork or was authored by Dependabot.
+        if: >
+          ! ( github.event.pull_request.head.repo.fork == true ||
+          github.event.pull_request.user.login == 'dependabot[bot]' )
+        uses: ataylorme/eslint-annotate-action@1.2.0
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          report-json: 'lint-js-report.json'
+
+#-----------------------------------------------------------------------------------------------------------------------
+
+  lint-php:
+    name: 'Lint: PHP'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+          tools: composer, cs2pr
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Configure Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --optimize-autoloader  --no-suggest --no-progress --no-interaction
+
+      - name: Validate composer.json
+        run: composer --no-interaction validate --no-check-all
+
+      - name: Detect coding standard violations (PHPCS)
+        run: vendor/bin/phpcs -q --report=checkstyle --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 | cs2pr --graceful-warnings
