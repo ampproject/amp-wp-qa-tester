@@ -12,7 +12,6 @@ jobs:
   unit-test-php:
     name: 'Unit test: PHP (v${{ matrix.php }})'
     runs-on: ubuntu-latest
-    needs: [lint-css, lint-js, lint-php]
     strategy:
       matrix:
         php: ['7.4']
