@@ -12,7 +12,7 @@
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpcompatibility/phpcompatibility-wp": "^2.1",
         "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5",
-        "roave/security-advisories": "dev-master",
+        "roave/security-advisories": "dev-latest",
         "sirbrillig/phpcs-variable-analysis": "^2.8",
         "wp-coding-standards/wpcs": "^2.3"
     },
@@ -23,10 +23,6 @@
     "sort-packages": true
   },
   "extra": {
-    "branch-alias": {
-      "dev-master": "1.0.x-dev",
-      "dev-develop": "1.0.x-dev"
-    },
     "downloads": {
       "phpstan": {
         "url": "https://github.com/phpstan/phpstan/releases/latest/download/phpstan.phar",
