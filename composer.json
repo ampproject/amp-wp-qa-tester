@@ -2,7 +2,7 @@
     "name": "ampproject/amp-wp-qa-tester",
     "description": "Test pre-release versions of the AMP plugin.",
     "type": "wordpress-plugin",
-    "license": "GPL-2.0-or-later",
+    "license": "Apache-2.0",
     "minimum-stability": "dev",
     "require": {
         "php": "^5.6 || ^7.0"
