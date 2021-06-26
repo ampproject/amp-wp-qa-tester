@@ -3,7 +3,7 @@
   "private": true,
   "description": "Test pre-release versions of the AMP plugin.",
   "author": "AMP Project Contributors",
-  "license": "GPL-2.0-or-later",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/ampproject/amp-wp/qa-tester#readme",
   "repository": {
     "type": "git",
