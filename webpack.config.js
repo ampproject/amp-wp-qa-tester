@@ -14,7 +14,7 @@ const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 /**
  * Internal dependencies
  */
-const IgnoreExtraneousStyleAssets = require( '../bin/ignore-extraneous-style-assets' );
+const IgnoreExtraneousStyleAssets = require( './bin/ignore-extraneous-style-assets' );
 
 const sharedConfig = {
 	...defaultConfig,
