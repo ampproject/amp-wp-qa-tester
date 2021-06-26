@@ -5,7 +5,7 @@
 # AMP QA Tester Plugin for WordPress
 
 This WordPress plugin allows for one to test pre-release versions of the [AMP plugin](https://github.com/ampproject/amp-wp)
-from GitHub releases, release branches, and pull requests.
+from its GitHub releases, release branches, and pull requests.
 
 ## Building the plugin
 
