@@ -4,13 +4,13 @@
   "description": "Test pre-release versions of the AMP plugin.",
   "author": "AMP Project Contributors",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/ampproject/amp-wp/qa-tester#readme",
+  "homepage": "https://github.com/ampproject/amp-wp-qa-tester",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ampproject/amp-wp.git"
+    "url": "https://github.com/ampproject/amp-wp-qa-tester.git"
   },
   "bugs": {
-    "url": "https://github.com/ampproject/amp-wp/issues"
+    "url": "https://github.com/ampproject/amp-wp-qa-tester/issues"
   },
   "dependencies": {
     "@reach/combobox": "^0.14.0",
