@@ -66,7 +66,8 @@
     "extends": "@wordpress/npm-package-json-lint-config",
     "rules": {
       "require-version": "off",
-      "require-keywords": "off"
+      "require-keywords": "off",
+      "valid-values-license": "off"
     }
   }
 }
