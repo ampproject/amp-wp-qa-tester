@@ -85,4 +85,4 @@ jobs:
         run: gh release upload ${{ env.TAG_NAME }} amp-qa-tester.zip --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG_NAME: ${{ steps.update_release_draft.outputs.tag_name }}
+          TAG_NAME: ${{ needs.update_release_draft.outputs.tag_name }}
