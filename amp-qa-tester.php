@@ -4,7 +4,7 @@
  * Description: Test pre-release versions of the AMP plugin.
  * Plugin URI: https://amp-wp.org
  * Author: AMP Project Contributors
- * Author URI: https://github.com/ampproject/amp-wp/graphs/contributors
+ * Author URI: https://github.com/ampproject/amp-wp-qa-tester/graphs/contributors
  * Version: 1.0.0
  * Text Domain: amp-qa-tester
  * License: GPLv2 or later

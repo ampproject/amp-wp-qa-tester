@@ -8,6 +8,9 @@ autolabeler:
   - label: 'enhancement'
     branch:
       - '/enhancement\/.+/'
+  - label: 'chore'
+    branch:
+      - '/chore\/.+/'
 
 categories:
   - title: '🚀 Enhancements'
