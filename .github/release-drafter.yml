@@ -29,6 +29,8 @@ template: |
 
   $CHANGES
 
+  ## Contributors
+
   $CONTRIBUTORS
 
 version-resolver:

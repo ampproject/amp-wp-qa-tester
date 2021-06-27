@@ -1,14 +1,23 @@
-name: Build
+name: Release Draft
 
 on:
   push:
     branches:
       - main
+  # pull_request event is required only for autolabeler
   pull_request:
 
 jobs:
-  build:
-    name: 'Build plugin zip'
+  update_release_draft:
+    name: Generate release draft
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@fe52e97d262833ae07d05efaf1a239df3f1b5cd4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build_zip:
+    name: Build plugin zip
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -49,3 +58,31 @@ jobs:
 
       - name: Build plugin zip
         run: npm run build
+
+      - name: Upload build as artifact
+        # Don't run for PRs.
+        if: ${{ github.head_ref == null }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: zip-${{ github.sha }}
+          path: amp-qa-tester.zip
+
+  upload_assets:
+    name: Upload release assets
+    # Don't run for PRs.
+    if: ${{ github.head_ref == null }}
+    runs-on: ubuntu-latest
+    needs:
+      - update_release_draft
+      - build_zip
+    steps:
+      - name: Download plugin zip
+        uses: actions/download-artifact@v2
+        with:
+          name: zip-${{ github.sha }}
+
+      - name: Upload plugin zip to release draft
+        run: gh release upload ${{ env.TAG_NAME }} amp-qa-tester.zip --clobber
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ steps.update_release_draft.outputs.tag_name }}
