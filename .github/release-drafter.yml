@@ -31,7 +31,7 @@ name-template: 'v$RESOLVED_VERSION'
 
 replacers:
   # Exclude dependabot[bot] from contributor list.
-  - search: '/(?:\s+and\s+)?@dependabot\[bot\](?:,?\s+)/g'
+  - search: '/(\s+and\s+)?@dependabot\[bot\](,?\s+)/g'
     replace: ''
 
 tag-template: 'v$RESOLVED_VERSION'
