@@ -82,7 +82,7 @@ jobs:
           name: zip-${{ github.sha }}
 
       - name: Upload plugin zip to release draft
-        run: gh release upload ${{ TAG_NAME }} amp-qa-tester.zip --clobber
+        run: gh release upload ${{ env.TAG_NAME }} amp-qa-tester.zip --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG_NAME: ${{ steps.update_release_draft.outputs.tag_name }}
