@@ -11,8 +11,11 @@ jobs:
   update_release_draft:
     name: Generate release draft
     runs-on: ubuntu-latest
+    outputs:
+      tag_name: ${{ steps.release-drafter.outputs.tag_name }]
     steps:
-      - uses: release-drafter/release-drafter@fe52e97d262833ae07d05efaf1a239df3f1b5cd4
+      - id: release-drafter
+        uses: release-drafter/release-drafter@fe52e97d262833ae07d05efaf1a239df3f1b5cd4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
