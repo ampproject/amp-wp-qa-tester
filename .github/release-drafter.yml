@@ -22,7 +22,7 @@ categories:
   - title: '🧰 Maintenance'
     label: 'chore'
 
-change-template: '- #$NUMBER $TITLE ($AUTHOR)'
+change-template: '- #$NUMBER $TITLE (@$AUTHOR)'
 
 exclude-labels:
   - 'skip-changelog'
