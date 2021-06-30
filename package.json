@@ -13,7 +13,7 @@
     "url": "https://github.com/ampproject/amp-wp-qa-tester/issues"
   },
   "dependencies": {
-    "@reach/combobox": "^0.15.1",
+    "@reach/combobox": "^0.15.2",
     "@wordpress/api-fetch": "^5.1.1",
     "@wordpress/dom-ready": "^3.1.1",
     "@wordpress/element": "^3.1.1",
