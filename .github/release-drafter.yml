@@ -1,7 +1,4 @@
 autolabeler:
-  - label: 'skip-changelog'
-    branch:
-      - '/^dependabot\/.+'
   - label: 'bug'
     branch:
       - '/fix\/.+/'
@@ -21,6 +18,8 @@ categories:
       - 'bug'
   - title: '🧰 Maintenance'
     label: 'chore'
+  - title: '🛠 Dependency Updates'
+    label: 'dependencies'
 
 change-template: '- #$NUMBER $TITLE (@$AUTHOR)'
 
@@ -37,6 +36,7 @@ replacers:
 tag-template: 'v$RESOLVED_VERSION'
 
 template: |
+  <!-- WARNING: Any changes made here will be lost when a new commit is pushed to the default branch. -->
   ## Changes
 
   $CHANGES
