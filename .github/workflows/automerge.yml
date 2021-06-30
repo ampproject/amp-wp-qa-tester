@@ -1,7 +1,11 @@
 name: Automerge
 
 on:
-  pull_request:
+  # ⚠️ WARNING: Secrets can be accessed by forks when triggered via this event!
+  # In this case no code is checked out and no cache is being saved, so this workflow should be fine.
+  # See https://securitylab.github.com/research/github-actions-preventing-pwn-requests/.
+  pull_request_target:
+    types: [opened, reopened]
 
 jobs:
   automerge-dependencies:
