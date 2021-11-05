@@ -37,7 +37,7 @@
     "patch-package": "^6.4.7",
     "postcss-preset-env": "^6.7.0",
     "rtlcss-webpack-plugin": "^4.0.6",
-    "webpackbar": "^4.0.0"
+    "webpackbar": "^5.0.2"
   },
   "scripts": {
     "build": "npm-run-all build:*",
