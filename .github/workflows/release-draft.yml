@@ -65,7 +65,7 @@ jobs:
       - name: Upload build as artifact
         # Don't run for PRs.
         if: ${{ github.head_ref == null }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: zip-${{ github.sha }}
           path: amp-qa-tester.zip
