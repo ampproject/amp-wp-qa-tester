@@ -17,7 +17,7 @@
     "@wordpress/api-fetch": "^5.2.5",
     "@wordpress/dom-ready": "^3.2.2",
     "@wordpress/element": "^4.0.3",
-    "@wordpress/i18n": "^4.2.3"
+    "@wordpress/i18n": "^4.11.0"
   },
   "devDependencies": {
     "@wordpress/babel-preset-default": "^6.3.4",
