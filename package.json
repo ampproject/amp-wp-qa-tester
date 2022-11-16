@@ -23,7 +23,7 @@
     "@wordpress/babel-preset-default": "^6.3.4",
     "@wordpress/browserslist-config": "^4.0.1",
     "@wordpress/eslint-plugin": "^9.2.0",
-    "@wordpress/scripts": "^19.1.0",
+    "@wordpress/scripts": "^24.6.0",
     "babel-plugin-inline-react-svg": "^2.0.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "eslint-plugin-eslint-comments": "^3.2.0",
